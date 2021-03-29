@@ -1,0 +1,29 @@
+Stanovené termíny:
+	15.3. Dokončení a odevdzání plánu projektu a vytvoření repozitáře, 
+	22.3. Mock-up, tvorba testů matematické knihovny, návrh matematické knihovny, README 
+	29.3. Tvorba matematické knihovny, testování matematické knihovny, kostra GUI kalkulačky 
+	5.4. Profiling, GUI kalkulačkym, implementace matematické knihovny 
+	12.4. Instalátor, odinstalátor, tvorba uživatelské dokumentace, tvorba doxygen dokumentace, Makefile 
+	19.4. Testování aplikace kalkulačky, Mock-up na vědeckou kalkulačku  
+	26.4. Tvorba dokumentů"hodnoceni.txt" a "skutecnost.txt", finální odevzdání 
+
+Pravidla: 
+1. Upozornit svůj tým případě neschopnosti se zúčastnit pravidelného setkání 
+2. Na každé setkání vypracování krátkých poznámek o tom, co daných člen za týden udělal a jestli potřebuje s něčím pomoct (call for help) 
+3. Pravidelný feedback na členy v týmu a na práci v týmu 
+4. Dělání rozhodnutí ohledně projektu len so souhlasem všech členů, dělání rozhodnutí najednou 
+5. Pokud vím, že nestíhám splnit svůj týdenní úkol, dám o tom vědět co nejdříve 
+
+Přidělení úkolů na projektu jednotlivým řešitelům:	
+	xkrali20: tvorba a implementace matematické knihovny, instalator, uzivatelská dokumentace, makefile
+	xcecha06: GUI interface, mock-up, vzhled kódu, uprava dokumentace v kódu (doxygen) 
+	xsehno01: tvorba testu a testování matematicke knihovny, profiling, makefile
+ 
+
+Komunikační kanály:
+	Discord, Facebook, Messenger
+
+Systém správy verzí:
+	GitHub
+	odkaz na repozitár: https://github.com/damhem/IVS-calculator.git
+	Uživateli ivs.kontrola@gmail.com byl udelen prístup do repozitare
