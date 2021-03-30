@@ -549,9 +549,11 @@ class Calculator_ui(object):
         font.setPointSize(28)
         font.setBold(True)
         self.lineEdit.setFont(font)
+        self.lineEdit.setEnabled(False)
         self.lineEdit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.lineEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                        "color:black;\n"
                                         " border-bottom-right-radius: 8px;\n"
                                         " border-bottom-left-radius: 8px;\n"
                                         "")
@@ -581,8 +583,8 @@ class Calculator_ui(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.pushButton.setText(_translate("Dialog", "n!"))
-        self.pushButton_2.setText(_translate("Dialog", "("))
-        self.pushButton_3.setText(_translate("Dialog", ")"))
+        self.pushButton_2.setText(_translate("Dialog", "e"))
+        self.pushButton_3.setText(_translate("Dialog", "π"))
         self.pushButton_4.setText(_translate("Dialog", "DEL"))
         self.pushButton_5.setText(_translate("Dialog", "CE"))
         self.pushButton_6.setText(_translate("Dialog", "8"))
