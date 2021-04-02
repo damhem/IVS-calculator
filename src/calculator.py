@@ -11,8 +11,6 @@ import math
 from PyQt5.QtGui import *
 import os
 
-
-
 ##
 # @brief Class Calculator contains initialization and button methods
 #
@@ -27,6 +25,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     def __init__(self):
         # initialization
         super().__init__()
+
         self.setWindowIcon(QtGui.QIcon("cal.png"))
         self.setupUi(self)
         self.show()
@@ -74,6 +73,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
         # Button for float
         self.pushButton_25.clicked.connect(self.buttonFloat_pressed)
+
         self.pushButton_25.setShortcut(".")
 
         # Button = for solving
@@ -226,7 +226,6 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     # @param self The object pointer.
     def buttonSolve_pressed(self):
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
-
         ############ start #####################################################################################
         self.lineEdit_2.setText(expression)
         self.expSolving()
@@ -338,9 +337,6 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                 self.operatorbool = False
             ############ end #####################################################################################
             expression = expression[:-1]
-
-
-
         # printing result into lineEdit
         self.lineEdit.setText(expression)
         self.lineEdit.setFocus(False)
@@ -372,7 +368,6 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
             expression = self.lineEdit.text() + button.text()
 
-        # printing result into lineEdit
         self.lineEdit.setText(expression)
         self.lineEdit.setFocus(False)
         Calculator.last_button = self.sender().text()
@@ -389,6 +384,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                 or expression[-1] == ".":
             # check if float is correct
             helper = expression[:-1].split(".")
+
             if helper[-1] != "":
                 if "+" in helper[-1] or "-" in helper[-1] or "*" in helper[-1] or "/" in helper[-1] or expression.isnumeric():
                     expression = expression[:-1]
@@ -404,6 +400,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         else:
             # check if float is correct
             helper = expression.split(".")
+
             if helper[-1] != "":
                 if "+" in helper[-1] or "-" in helper[-1] or "*" in helper[-1] or "/" in helper[-1] or expression.isnumeric():
                     expression = self.lineEdit.text() + button.text()
@@ -426,6 +423,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         if expression == "0":
             expression = expression + button
         elif expression[-1] == button or expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" \
+
                 or expression[-1] == "/" or expression[-1] == ".":
             expression = expression[:-1]
             expression = expression + button
@@ -454,12 +452,15 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
         if Calculator.last_button == "ⁿ":
             expression = expression + "ͤ"
+
         elif Calculator.last_button == "√":
             expression = "ͤ" + expression
         elif expression == "0":
             expression = button
         elif expression[-1] == button or expression[-1] == "π" or expression[-1] == "." or expression[-1].isnumeric():
+
             expression = expression
+
         else:
             expression = self.lineEdit.text() + button
         # printing result into lineEdit
@@ -482,6 +483,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             expression = button
 
         elif expression[-1] == button or expression[-1] == "e" or expression[-1] == "." or expression[-1].isnumeric():
+
             expression = expression
         else:
             expression = self.lineEdit.text() + button
@@ -578,6 +580,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             ############ end #####################################################################################
             expression = button + self.lineEdit.text()
 
+        # printing result into lineEdit
         self.lineEdit.setText(expression)
         self.lineEdit.setFocus(False)
         Calculator.last_button = str(button)
@@ -596,6 +599,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         # printing result into lineEdit
         # todo result
         # split expression into num1 and exponent and send them to the exponent (power) function
+
         self.lineEdit.setText(expression)
         self.lineEdit.setFocus(False)
         Calculator.last_button = str(button)
