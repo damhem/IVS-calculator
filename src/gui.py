@@ -603,7 +603,7 @@ class Calculator_ui(object):
         self.pushButton_21.setText(_translate("Dialog", "/"))
         self.pushButton_22.setText(_translate("Dialog", "0"))
         self.pushButton_24.setText(_translate("Dialog", "|x|"))
-        self.pushButton_25.setText(_translate("Dialog", ","))
+        self.pushButton_25.setText(_translate("Dialog", "."))
         self.lineEdit.setText(_translate("Dialog", "0"))
         self.lineEdit_2.setText(_translate("Dialog", ""))
 

@@ -142,6 +142,8 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                     num1 = math.e
                 elif num1 == 'π':
                     num1 = math.pi
+                elif num1.find('.') != -1:
+                    num1 = float(num1)
                 else:
                     num1 = int(num1)
 
@@ -149,6 +151,8 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                     num2 = math.e
                 elif num2 == 'π':
                     num2 = math.pi
+                elif num2.find('.') != -1:
+                    num2 = float(num2)
                 else:
                     num2 = int(num2)
 
@@ -167,8 +171,6 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                         self.lineEdit.setText("0")
                         return
                 elif i == '!':
-                    #num1 = int(num1)
-                    #TODO konverzia z floatu
                     try:
                         expression = str(Calclib.factorial(num1))
                     except ValueError:

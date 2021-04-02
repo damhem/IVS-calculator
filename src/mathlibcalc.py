@@ -68,7 +68,7 @@ class Calclib:
         if num2 == 0:
             raise ZeroDivisionError("Math Error - Dividing by zero")
         else:
-            return num1/num2
+            return round(num1/num2, 10)
 
 
     ##
