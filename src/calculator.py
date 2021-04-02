@@ -73,8 +73,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
         # Button for float
         self.pushButton_25.clicked.connect(self.buttonFloat_pressed)
-
-        self.pushButton_25.setShortcut(".")
+        self.pushButton_25.setShortcut(",")
 
         # Button = for solving
         self.pushButton_14.clicked.connect(self.buttonSolve_pressed)
@@ -350,7 +349,8 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         button = self.sender()  # getting value from button clicked in the moment
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
         # if last char is simple operator just change it
-        if button.text() == "-" and expression[-1] == "+" or expression[-1] == "*" or expression[-1] == "/":
+        if button.text() == "-" and expression[-1] == "+"\
+                or expression[-1] == "*" or expression[-1] == "/":
             expression = expression + button.text()
         elif expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" or expression[-1] == "/" \
                 or expression[-1] == ".":
