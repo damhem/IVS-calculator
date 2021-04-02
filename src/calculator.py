@@ -350,7 +350,9 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         button = self.sender()  # getting value from button clicked in the moment
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
         # if last char is simple operator just change it
-        if expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" or expression[-1] == "/" \
+        if button.text() == "-" and expression[-1] == "+" or expression[-1] == "*" or expression[-1] == "/":
+            expression = expression + button.text()
+        elif expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" or expression[-1] == "/" \
                 or expression[-1] == ".":
             expression = expression[:-1]
             expression = expression + button.text()
@@ -423,7 +425,6 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         if expression == "0":
             expression = expression + button
         elif expression[-1] == button or expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" \
-
                 or expression[-1] == "/" or expression[-1] == ".":
             expression = expression[:-1]
             expression = expression + button
