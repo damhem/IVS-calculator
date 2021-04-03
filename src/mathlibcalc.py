@@ -3,16 +3,7 @@
 # Author: Dalibor Králik, xkrali20
 # Date: 2021-03-22
 
-##
-# @package merioneslib
-# Merioneslib is a mathematical library for Meriones calculator.
-#
-# This mathematical library consists of basic mathematical operations
-# such as sum, difference, multiplication or division, advanced mathematical
-# operations such as power, root, natural logarithm. This library also
-# includes some conversion functions such as convert_weight, convert_time
-# convert_degrees, convert_lenght
-#
+
 
 
 
@@ -112,7 +103,7 @@ class Calclib:
     def exponent(num1, expo):
         if num1 == 0 and expo == 0:
             raise ValueError("Math Error")
-        return num1 ** expo
+        return round(num1 ** expo, 10)
 
 
     ##
