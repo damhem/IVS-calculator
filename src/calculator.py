@@ -423,7 +423,6 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         if expression == "0":
             expression = expression + button
         elif expression[-1] == button or expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" \
-
                 or expression[-1] == "/" or expression[-1] == ".":
             expression = expression[:-1]
             expression = expression + button
