@@ -1,14 +1,36 @@
-#!usr/bin/env python3
+#!usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # profiling.py
 # Project IVS 2
 # Author: Patrik Sehnoutek, xsehno01
-# Date: 2021-04-01
+# Date: 2021-04-03
 
 import random
 from mathlibcalc import Calclib
 
+
+##
+# @brief Function for reading input from stdin
+#
+# @return Array of numbers from stdin
+def read_from_stdin():
+    input_numbers = []
+    while True:
+        try:
+            line = input()
+        except EOFError:
+            break
+        input_numbers += line.split()
+    return input_numbers
+
+
+##
+# @brief Function for generating random numbers
+#
+# @param n Number of generated numbers
+#
+# @return Array of generated numbers
 def generate_random_numbers(n):
     str_numbers = ""
     for i in range(n):
@@ -18,6 +40,12 @@ def generate_random_numbers(n):
     return str_numbers.split()
 
 
+##
+# @brief Function for calculating standard deviation
+#
+# @param numbers_arr Array of given numbers
+#
+# @return Result of standard deviation
 def standard_deviation(numbers_arr):
     length = len(numbers_arr)
 
@@ -41,9 +69,8 @@ def standard_deviation(numbers_arr):
 
 
 if __name__ == '__main__':
-    #str_input = ""
-    #str_input = input()
-    #str_input = input().split()
-    #print(str_input)
-    numbers = generate_random_numbers(500000)
-    print(standard_deviation(numbers))
+    input_numbers = read_from_stdin()
+    print(input_numbers)
+    print(standard_deviation(input_numbers))
+    # numbers = generate_random_numbers(1000)
+    # print(standard_deviation(numbers))
