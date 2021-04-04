@@ -1,0 +1,14 @@
+V priložených obrázkoch (grafoch) z profilingu môžeme vidieť vstupy o veľkosti 10, 100, 1000 a 500 000 čísiel.
+Posledný vstup sme zvolili hlavne kvôli tomu, aby sme zistili ako sa zachová náš program pri veľkom vstupe.
+
+Môžeme vidieť, že dosť veľa času zabralo generovanie nášho vstupu. To ale nebude problém pri zadávaní vstupu zo štandartného vstupu.
+
+Ďalšou funkciou v poradí je samotná funkcia na riešenie smerodajnej odchýlky. 
+Keďže naša matematická knižnica nerieši priamo výrazy, ale obsahuje iba matematické operácie. 
+Rozložili sme vzorec na základné matematické operácie, ktoré následne za nás vyriešili
+funkcie z našej matematickej knižnice.
+
+Na záver by sme to zhodnotili tak, že priamo v matematickej knižnici nemáme ako moc optimalizovať funkcie,
+lebo ide iba o základné matematické operácie. Ale profiling nám pomohol odhaliť chybu
+v matematickej knižnici vo funkcií na výpočet odmocniny.
+Chybu sme mali vo výpočte párnych odmocnín a následnom chybovom hlásení.
