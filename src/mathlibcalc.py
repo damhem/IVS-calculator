@@ -3,16 +3,7 @@
 # Author: Dalibor Králik, xkrali20
 # Date: 2021-03-22
 
-##
-# @package merioneslib
-# Merioneslib is a mathematical library for Meriones calculator.
-#
-# This mathematical library consists of basic mathematical operations
-# such as sum, difference, multiplication or division, advanced mathematical
-# operations such as power, root, natural logarithm. This library also
-# includes some conversion functions such as convert_weight, convert_time
-# convert_degrees, convert_lenght
-#
+
 
 
 
@@ -41,7 +32,7 @@ class Calclib:
     # @return Difference of two numbers
     @staticmethod
     def minus(num1, num2):
-        return num1 - num2
+        return round(num1-num2, 10)
 
     ##
     # @brief Function for multiplying two numbers
@@ -52,7 +43,7 @@ class Calclib:
     # @return Multiple of two numbers
     @staticmethod
     def multiply(num1, num2):
-        return num1*num2
+        return round(num1*num2, 10)
 
 
     ##
@@ -68,7 +59,7 @@ class Calclib:
         if num2 == 0:
             raise ZeroDivisionError("Math Error - Dividing by zero")
         else:
-            return num1/num2
+            return round(num1/num2, 10)
 
 
     ##
@@ -79,7 +70,7 @@ class Calclib:
     # @return Absolute value of num1
     @staticmethod
     def operation_abs(num1):
-        return abs(num1)
+        return round(abs(num1), 10)
 
 
     ##
@@ -112,7 +103,7 @@ class Calclib:
     def exponent(num1, expo):
         if num1 == 0 and expo == 0:
             raise ValueError("Math Error")
-        return num1 ** expo
+        return round(num1 ** expo, 10)
 
 
     ##
@@ -130,7 +121,7 @@ class Calclib:
         elif num1 == 0:
             return 0
         elif num1 < 0 and expo % 2 == 1:
-            return -1*round(((-1*num1) ** (1/expo)), 5)
+            return -1*round(((-1*num1) ** (1/expo)), 10)
         else:
-            return round((num1 ** (1/expo)), 5)
+            return round((num1 ** (1/expo)), 10)
 

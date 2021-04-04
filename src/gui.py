@@ -9,6 +9,38 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QRect
+from PyQt5.QtGui import QPainter
+from PyQt5.QtWidgets import QMessageBox, QWidget
+
+
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(400, 400)
+        self.dialoglabel = QtWidgets.QLabel(Dialog)
+        self.dialoglabel.setObjectName("dialoglabel")
+        self.dialoglabel.setStyleSheet("color:black;\n"
+                                        "font-size: 20px;\n"
+                                        "border: 2px solid;\n"
+                                        "border-radius: 8px;\n"
+                                        "background-color:white;"
+                                        "margin:5px;\n")
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.dialoglabel.setText(_translate("Dialog", "Nápověda:\n"
+                                            "Jedná se o jednoduchou kalkulačku\n"
+                                            "Čísla a operáty mužete zadávat postupně \n tlačítky nebo pomocí klávesnice            .  \n"
+                                            "V případě nefunkčnosti nakoukněte\n do dokumentace\n"
+                                            "\n"
+                                            "\n"
+                                            "\n"))
+        Dialog.setWindowTitle("Nápověda")
 
 
 class Calculator_ui(object):
@@ -21,6 +53,7 @@ class Calculator_ui(object):
         Dialog.setAccessibleName("")
         Dialog.setAutoFillBackground(False)
         Dialog.setStyleSheet("background-color: rgb(71, 71, 71);")
+
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(2, 150, 76, 76))
         font = QtGui.QFont()
@@ -549,9 +582,11 @@ class Calculator_ui(object):
         font.setPointSize(28)
         font.setBold(True)
         self.lineEdit.setFont(font)
+        self.lineEdit.setEnabled(False)
         self.lineEdit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.lineEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                        "color:black;\n"
                                         " border-bottom-right-radius: 8px;\n"
                                         " border-bottom-left-radius: 8px;\n"
                                         "")
@@ -573,16 +608,47 @@ class Calculator_ui(object):
         self.lineEdit_2.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing)
         self.lineEdit_2.setClearButtonEnabled(False)
         self.lineEdit_2.setObjectName("lineEdit_2")
-
+        self.pushButton_help = QtWidgets.QPushButton(Dialog)
+        self.pushButton_help.setGeometry(QtCore.QRect(7, 9, 35, 20))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Semilight")
+        font.setPointSize(10)
+        self.pushButton_help.setFont(font)
+        self.pushButton_help.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_help.setAutoFillBackground(False)
+        self.pushButton_help.setStyleSheet("QPushButton{background-color: rgb(250, 250, 250);\n"
+                                                "    color:black;\n"
+                                                "    border: 1px solid;\n"
+                                                "    border-radius: 4px;\n"
+                                                "     border-bottom: 2px solid;\n"
+                                                "    border-right: 2px solid}\n"
+                                                "QPushButton:hover{\n"
+                                                "    background-color:rgb(50, 50, 50);    \n"
+                                                "     color: white;}\n"
+                                                "QPushButton:pressed{\n"
+                                                "     border-bottom: 3px solid;\n"
+                                                "    border-right: 3px solid}\n"
+                                                "")
+        self.pushButton_help.clicked.connect(self.open_dialog)
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def open_dialog(self):
+        Dialogs = QtWidgets.QDialog()
+        uis = Ui_Dialog()
+        uis.setupUi(Dialogs)
+        Dialogs.exec_()
+        Dialogs.show()
+
+
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.pushButton_help.setText(_translate("Dialog", "help"))
         self.pushButton.setText(_translate("Dialog", "n!"))
-        self.pushButton_2.setText(_translate("Dialog", "("))
-        self.pushButton_3.setText(_translate("Dialog", ")"))
+        self.pushButton_2.setText(_translate("Dialog", "e"))
+        self.pushButton_3.setText(_translate("Dialog", "π"))
         self.pushButton_4.setText(_translate("Dialog", "DEL"))
         self.pushButton_5.setText(_translate("Dialog", "CE"))
         self.pushButton_6.setText(_translate("Dialog", "8"))
@@ -603,9 +669,10 @@ class Calculator_ui(object):
         self.pushButton_21.setText(_translate("Dialog", "/"))
         self.pushButton_22.setText(_translate("Dialog", "0"))
         self.pushButton_24.setText(_translate("Dialog", "|x|"))
-        self.pushButton_25.setText(_translate("Dialog", ","))
+        self.pushButton_25.setText(_translate("Dialog", "."))
         self.lineEdit.setText(_translate("Dialog", "0"))
         self.lineEdit_2.setText(_translate("Dialog", ""))
+        Dialog.setWindowTitle("Calculator")
 
 
 if __name__ == "__main__":
