@@ -73,7 +73,8 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
         # Button for float
         self.pushButton_25.clicked.connect(self.buttonFloat_pressed)
-        self.pushButton_25.setShortcut(",")
+
+        self.pushButton_25.setShortcut(".")
 
         # Button = for solving
         self.pushButton_14.clicked.connect(self.buttonSolve_pressed)
@@ -116,7 +117,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     # @brief Function convert index to the integer
     #
     # @param num1 as a string
-    def convertIndex(self,num1):
+    def convertIndex(self, num1):
         expression = ''
         array = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹']
         for i in num1:
@@ -132,11 +133,13 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     def expSolving(self):
         expression = self.lineEdit.text()
         self.lineEdit_2.setText(expression)
+        exponentbool = False
         array = {'+', '√', '-', '*', '/', '!'}
         for i in array:
             # if first number is negative, we don't want to deal with it as a operator but as a negative number
             # if first character in string is '√', we want exponent set to ² after press = or next operator
             if (expression.rfind(i) > 0 and i != '√') or (expression.rfind(i) >= 0 and i == '√'):
+                exponentbool = True
                 # if last character is operator, add 0 to the end of expression
                 if expression[-1] == i:
                     expression = expression + '0'
@@ -213,6 +216,33 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                         self.lineEdit.setText("0")
                         return
 
+        # Solving exponent (power) function
+        array1 = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', ' ⷫ', 'ͤ']
+        if not exponentbool and expression[-1] in array1:
+            for i in expression:
+                if i in array1:
+                    numbers = expression.split(i)
+                    num1 = numbers[0]
+                    num2 = i+numbers[1]
+
+                    if num1 == 'e':
+                        num1 = math.e
+                    elif num1 == 'π':
+                        num1 = math.pi
+                    elif num1.find('.') != -1:
+                        num1 = float(num1)
+                    else:
+                        num1 = int(num1)
+
+                    if num2 == 'ͤ':
+                        num2 = math.e
+                    elif num2 == ' ⷫ':
+                        num2 = math.pi
+                    else:
+                        num2 = self.convertIndex(num2)
+
+                    expression = str(Calclib.exponent(num1, num2))
+                    break
 
         self.lineEdit.setText(expression)
         self.operatorbool = False
@@ -349,10 +379,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         button = self.sender()  # getting value from button clicked in the moment
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
         # if last char is simple operator just change it
-        if button.text() == "-" and expression[-1] == "+"\
-                or expression[-1] == "*" or expression[-1] == "/":
-            expression = expression + button.text()
-        elif expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" or expression[-1] == "/" \
+        if expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" or expression[-1] == "/" \
                 or expression[-1] == ".":
             expression = expression[:-1]
             expression = expression + button.text()
@@ -363,7 +390,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
         else:
             ############ start #####################################################################################
-            if self.operatorbool == True:
+            if self.operatorbool:
                 self.expSolving()
             self.operatorbool = True
             ############ end #####################################################################################
@@ -433,7 +460,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             ############ end #####################################################################################
         else:
             ############ start #####################################################################################
-            if self.operatorbool == True:
+            if self.operatorbool:
                 self.expSolving()
             self.operatorbool = True
             ############ end #####################################################################################
@@ -533,7 +560,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             expression = str(Calclib.operation_abs(num1))
 
         self.lineEdit.setText(expression)
-        if negativebool == True: # if num1 was negative, add '-' to expression for self.lineEdit_2.setText()
+        if negativebool: # if num1 was negative, add '-' to expression for self.lineEdit_2.setText()
             expression = '-'+expression
         ############ end #####################################################################################
 
@@ -575,7 +602,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             ############ end #####################################################################################
         else:
             ############ start #####################################################################################
-            if self.operatorbool == True:
+            if self.operatorbool:
                 self.expSolving()
             self.operatorbool = True
             ############ end #####################################################################################
@@ -593,13 +620,18 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     def buttonPower_pressed(self):
         button = "ⁿ"
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
+
+        ############ start #####################################################################################
+        if self.operatorbool:
+            self.expSolving()
+            expression = self.lineEdit.text()
+        self.operatorbool = True
+        ############ end #####################################################################################
+
         # if last char is simple operator or float get rid of it
         if expression[-1] == button or expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" \
                 or expression[-1] == "/" or expression[-1] == ".":
             expression = expression[:-1]
-        # printing result into lineEdit
-        # todo result
-        # split expression into num1 and exponent and send them to the exponent (power) function
 
         self.lineEdit.setText(expression)
         self.lineEdit.setFocus(False)
