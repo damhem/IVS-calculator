@@ -240,8 +240,22 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                     else:
                         num2 = self.convertIndex(num2)
 
-                    expression = str(Calclib.exponent(num1, num2))
+                    try:
+                        expression = str(Calclib.exponent(num1, num2))
+                    except ValueError:
+                        # Throw error message when 0^0 occurs
+                        self.lineEdit_2.setText("Math Error")
+                        self.lineEdit.setText("0")
+                        return
+
                     break
+
+        #converting 'e' and 'π' to float number if = pressed
+        if expression == 'e':
+            expression = str(round(math.e, 10))
+        elif expression == 'π':
+            expression = str(round(math.pi, 10))
+
 
         self.lineEdit.setText(expression)
         self.operatorbool = False
