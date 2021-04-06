@@ -86,6 +86,7 @@ class Calclib:
         if num1 < 0 or num1 % 1 != 0:
             raise ValueError("Math Error")
         else:
+            num1 = int(num1)
             for i in range(1, num1+1):
                 result*=i
             return result
