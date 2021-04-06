@@ -183,6 +183,8 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                 else:
                     num2 = int(num2)
 
+
+
                 # sending to the mathlibcalc functions
                 if i == '+':
                     expression = str(Calclib.plus(num1,num2))
@@ -207,12 +209,18 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                         self.lineEdit.setText("0")
                         return
                 elif i == '√':
+                    if (numbers[0] == ' ⷫ' or numbers[0] == 'ͤ') and num2 < 0:
+                        self.lineEdit_2.setText("Math Error")
+                        self.lineEdit.setText("0")
+                        self.operatorbool = False
+                        return
                     try:
                         expression = str(Calclib.root(num2, num1))
                     except ValueError:
                         # Throw error message when exponent = 0
                         self.lineEdit_2.setText("Math Error - Exponent = 0")
                         self.lineEdit.setText("0")
+                        self.operatorbool = False
                         return
 
         # Solving exponent (power) function
@@ -223,7 +231,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                     numbers = expression.split(i)
                     num1 = numbers[0]
                     num2 = i+numbers[1]
-
+                    numbers[1] = i + numbers[1]
                     if num1 == 'e':
                         num1 = math.e
                     elif num1 == 'π':
@@ -235,11 +243,17 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
                     if num2 == 'ͤ':
                         num2 = math.e
+
                     elif num2 == 'ⷫ':
                         num2 = math.pi
                     else:
                         num2 = self.convertIndex(num2)
 
+                    if (numbers[1] == 'ⷫ' or numbers[1] == 'ͤ') and num1 < 0:
+                        self.lineEdit_2.setText("Math Error")
+                        self.lineEdit.setText("0")
+                        self.operatorbool = False
+                        return
                     try:
                         expression = str(Calclib.exponent(num1, num2))
                     except ValueError:
@@ -499,8 +513,19 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             expression = expression
         elif Calculator.last_button == "ⁿ":
             expression = expression + "ͤ"
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
+
         elif Calculator.last_button == "√":
             expression = "ͤ" + expression
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
+
+
         elif expression == "0":
             expression = button
 
@@ -525,10 +550,20 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', "ͤ", "ⷫ"}
         if Calculator.last_button == "ⁿ":
             expression = expression + " ⷫ"
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
+
         elif expression[-1] in array:
             expression = expression
         elif Calculator.last_button == "√":
             expression = " ⷫ" + expression
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
+
         elif expression == "0":
             expression = button
 
