@@ -494,14 +494,16 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     def buttonE_pressed(self):
         button = "e"  # ᵉ
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
-        if Calculator.last_button == "ⁿ":
-            expression = expression + "ͤ"
-        elif expression[-1] == "ͤ" or expression[-1] == "ⷫ":
+        array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', "ͤ", "ⷫ"}
+        if expression[0] in array:
             expression = expression
+        elif Calculator.last_button == "ⁿ":
+            expression = expression + "ͤ"
         elif Calculator.last_button == "√":
             expression = "ͤ" + expression
         elif expression == "0":
             expression = button
+
         elif expression[-1] == button or expression[-1] == "π" or expression[-1] == "." or expression[-1].isnumeric():
 
             expression = expression
@@ -520,9 +522,10 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     def buttonPi_pressed(self):
         button = "π"  #    ⷫ
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
+        array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', "ͤ", "ⷫ"}
         if Calculator.last_button == "ⁿ":
             expression = expression + " ⷫ"
-        elif expression[-1] == "ͤ" or expression[-1] == "ⷫ":
+        elif expression[-1] in array:
             expression = expression
         elif Calculator.last_button == "√":
             expression = " ⷫ" + expression
