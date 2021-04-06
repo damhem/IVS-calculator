@@ -319,6 +319,12 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         button = button.text()
         array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'}
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
+
+        ######### start - pato ###########################
+        if Calculator.last_button == "=":
+            expression = "0"
+        ############# end ############
+
         if expression[-1] == "ͤ" or expression[-1] == "ⷫ":
             expression = expression
         # reacting if last button is Square root
