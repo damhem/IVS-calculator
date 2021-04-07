@@ -49,14 +49,19 @@ def generate_random_numbers(n):
 def standard_deviation(numbers_arr):
     length = len(numbers_arr)
 
+    if (length == 0):
+        return "ERROR: Empty input."
+    if (length == 1):
+        return "ERROR: Cannot calculate standard deviation from one number."
+
     result = 0
     right_side = 0
     left_side = 0
 
     for i in range(length):
-        tmp = Calclib.exponent(int(numbers_arr[i]), 2)
+        tmp = Calclib.exponent(float(numbers_arr[i]), 2)
         left_side = Calclib.plus(left_side, tmp)
-        right_side = Calclib.plus(right_side, int(numbers_arr[i]))
+        right_side = Calclib.plus(right_side, float(numbers_arr[i]))
 
     right_side = Calclib.divide(right_side, length)
     right_side = Calclib.exponent(right_side, 2)
@@ -70,7 +75,6 @@ def standard_deviation(numbers_arr):
 
 if __name__ == '__main__':
     input_numbers = read_from_stdin()
-    print(input_numbers)
     print(standard_deviation(input_numbers))
     # numbers = generate_random_numbers(1000)
     # print(standard_deviation(numbers))
