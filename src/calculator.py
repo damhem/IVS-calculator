@@ -321,7 +321,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
 
         ######### start - pato ###########################
-        if Calculator.last_button == "=":
+        if Calculator.last_button == "=" or Calculator.last_button == "|x|":
             expression = "0"
         ############# end ############
 
