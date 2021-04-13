@@ -50,7 +50,7 @@ class Calclib:
     # @param num1 First number
     # @param num2 Second number
     #
-    # @throw ZeroDivisionError If num2 is equal to 0
+    # @exception ZeroDivisionError If num2 is equal to 0
     # @return Return division of two numbers
     @staticmethod
     def divide(num1,num2):
@@ -71,7 +71,7 @@ class Calclib:
     #
     # @param num1 Number
     #
-    # @throw ValueError If num1 is less than 0 or if num1 is not integer
+    # @exception ValueError If num1 is less than 0 or if num1 is not integer
     # @return Factorial of num1
     @staticmethod
     def factorial(num1):
@@ -83,6 +83,7 @@ class Calclib:
     # @param num1 Number
     # @param expo Exponent
     #
+    # @exception ValueError If num1 is equal to 0 and expo is equal to 0
     # @return Exponentiation the number of the exponent
     @staticmethod
     def exponent(num1, expo):
@@ -94,7 +95,7 @@ class Calclib:
     # @param num1 Number
     # @param expo Root number
     #
-    # @throw ValueError If num1 is less then 0 and root number is even, or if root number is equal to 0
+    # @exception ValueError If num1 is less then 0 and root number is even, or if root number is equal to 0
     # @return Root of num1
     @staticmethod
     def root(num1, expo):
