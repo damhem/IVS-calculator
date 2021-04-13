@@ -1,9 +1,9 @@
-# mathlibcalc.py
+# mathlibcalcProposal.py
 # Project IVS 2
 # Author: Dalibor Králik, xkrali20
 # Date: 2021-03-22
 
-#Add file doxygen
+
 
 
 ##
@@ -83,7 +83,7 @@ class Calclib:
     # @param num1 Number
     # @param expo Exponent
     #
-    # @return Exponentiate the number of the exponent
+    # @return Exponentiation the number of the exponent
     @staticmethod
     def exponent(num1, expo):
         pass

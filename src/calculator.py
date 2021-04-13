@@ -73,8 +73,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
         # Button for float
         self.pushButton_25.clicked.connect(self.buttonFloat_pressed)
-
-        self.pushButton_25.setShortcut(".")
+        self.pushButton_25.setShortcut(",")
 
         # Button = for solving
         self.pushButton_14.clicked.connect(self.buttonSolve_pressed)
@@ -184,6 +183,8 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                 else:
                     num2 = int(num2)
 
+
+
                 # sending to the mathlibcalc functions
                 if i == '+':
                     expression = str(Calclib.plus(num1,num2))
@@ -208,23 +209,29 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                         self.lineEdit.setText("0")
                         return
                 elif i == '√':
+                    if (numbers[0] == ' ⷫ' or numbers[0] == 'ͤ') and num2 < 0:
+                        self.lineEdit_2.setText("Math Error")
+                        self.lineEdit.setText("0")
+                        self.operatorbool = False
+                        return
                     try:
                         expression = str(Calclib.root(num2, num1))
                     except ValueError:
                         # Throw error message when exponent = 0
                         self.lineEdit_2.setText("Math Error - Exponent = 0")
                         self.lineEdit.setText("0")
+                        self.operatorbool = False
                         return
 
         # Solving exponent (power) function
-        array1 = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', ' ⷫ', 'ͤ']
+        array1 = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', 'ⷫ', 'ͤ']
         if not exponentbool and expression[-1] in array1:
             for i in expression:
                 if i in array1:
                     numbers = expression.split(i)
                     num1 = numbers[0]
                     num2 = i+numbers[1]
-
+                    numbers[1] = i + numbers[1]
                     if num1 == 'e':
                         num1 = math.e
                     elif num1 == 'π':
@@ -236,13 +243,33 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
                     if num2 == 'ͤ':
                         num2 = math.e
-                    elif num2 == ' ⷫ':
+
+                    elif num2 == 'ⷫ':
                         num2 = math.pi
                     else:
                         num2 = self.convertIndex(num2)
 
-                    expression = str(Calclib.exponent(num1, num2))
+                    if (numbers[1] == 'ⷫ' or numbers[1] == 'ͤ') and num1 < 0:
+                        self.lineEdit_2.setText("Math Error")
+                        self.lineEdit.setText("0")
+                        self.operatorbool = False
+                        return
+                    try:
+                        expression = str(Calclib.exponent(num1, num2))
+                    except ValueError:
+                        # Throw error message when 0^0 occurs
+                        self.lineEdit_2.setText("Math Error")
+                        self.lineEdit.setText("0")
+                        return
+
                     break
+
+        #converting 'e' and 'π' to float number if = pressed
+        if expression == 'e':
+            expression = str(round(math.e, 10))
+        elif expression == 'π':
+            expression = str(round(math.pi, 10))
+
 
         self.lineEdit.setText(expression)
         self.operatorbool = False
@@ -293,8 +320,15 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'}
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
 
+        ######### start - pato ###########################
+        if Calculator.last_button == "=" or Calculator.last_button == "|x|":
+            expression = "0"
+        ############# end ############
+
+        if expression[-1] == "ͤ" or expression[-1] == "ⷫ":
+            expression = expression
         # reacting if last button is Square root
-        if str(Calculator.last_button) == "√":
+        elif str(Calculator.last_button) == "√":
             # transforming number to upper index
             button = self.number(int(button))
             help = self.lineEdit.text()
@@ -316,6 +350,8 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             self.lineEdit.setText(expression)
             self.lineEdit.setFocus(False)
             Calculator.last_button = button
+        elif expression[-1] == "ͤ" or expression[-1] == " ⷫ":
+            expression = expression
         elif expression[-1] == "e" or expression[-1] == "π":
             expression = expression
         else:
@@ -478,13 +514,27 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     def buttonE_pressed(self):
         button = "e"  # ᵉ
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
-        if Calculator.last_button == "ⁿ":
+        array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', "ͤ", "ⷫ"}
+        if expression[0] in array:
+            expression = expression
+        elif Calculator.last_button == "ⁿ":
             expression = expression + "ͤ"
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
 
         elif Calculator.last_button == "√":
             expression = "ͤ" + expression
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
+
+
         elif expression == "0":
             expression = button
+
         elif expression[-1] == button or expression[-1] == "π" or expression[-1] == "." or expression[-1].isnumeric():
 
             expression = expression
@@ -501,12 +551,25 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     #
     # @param self The object pointer.
     def buttonPi_pressed(self):
-        button = "π"  #  ⷫ
+        button = "π"  #    ⷫ
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
+        array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', "ͤ", "ⷫ"}
         if Calculator.last_button == "ⁿ":
             expression = expression + " ⷫ"
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
+
+        elif expression[-1] in array:
+            expression = expression
         elif Calculator.last_button == "√":
             expression = " ⷫ" + expression
+            self.lineEdit.setText(expression)
+            self.expSolving()
+            expression = self.lineEdit.text()
+            self.operatorbool = False
+
         elif expression == "0":
             expression = button
 
