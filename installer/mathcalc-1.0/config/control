@@ -1,0 +1,12 @@
+Source: mathcalc
+Section: application
+Priority: extra
+Maintainer: ivs <xkrali20@stud.fit.vutbr.cz>
+Build-Depends: debhelper-compat (= 12), python3-pyqt5, python3-pip, python3
+Standards-Version: 4.4.1
+
+Package: mathcalc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: calculator
+ simple calculator

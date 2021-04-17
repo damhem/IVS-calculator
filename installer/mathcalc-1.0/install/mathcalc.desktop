@@ -1,0 +1,8 @@
+[Desktop Entry]
+Categories=Qt;Application;
+Exec=mathcalc
+GenericName=Simple Calculator
+Icon=/usr/share/pixmaps/mathcalc.png
+Name=MathCalc
+Type=Application
+X-KDE-StartupNotify=false
