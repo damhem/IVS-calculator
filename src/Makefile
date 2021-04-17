@@ -2,6 +2,8 @@
 # Author: Patrik Sehnoutek, xsehno01
 # Date: 2021-04-16
 
+SHELL = /bin/bash
+
 .PNONY: all pack clean test doc run profile
 
 all: run
@@ -10,6 +12,7 @@ depend:
 	sudo apt install -y python3
 	sudo apt install -y python3-pip
 	sudo apt install -y doxygen
+	sudo apt install -y graphviz
 	pip3 install PyQt5
 
 pack: doc
@@ -38,3 +41,6 @@ run: main.py depend
 
 profile: profiling.py depend
 	python3 profiling.py
+
+installer: main.py mathlibcalc.py gui.py calculator.py
+	bash install.sh
