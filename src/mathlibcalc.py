@@ -21,7 +21,7 @@ class Calclib:
     # @return Return sum of two numbers
     @staticmethod
     def plus(num1, num2):
-        return num1 + num2
+        return round(num1+num2, 8)
 
     ##
     # @brief Function for the difference of two numbers
