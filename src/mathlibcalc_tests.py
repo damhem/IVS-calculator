@@ -6,7 +6,10 @@
 import unittest
 from mathlibcalc import Calclib
 
-# (+) Addition tests 
+
+##
+# @brief Class MathLibCalcAddTests contains tests for method Plus in mathlicalc.py
+#
 class MathLibCalcAddTests(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()
@@ -32,7 +35,9 @@ class MathLibCalcAddTests(unittest.TestCase):
         self.assertEqual(self.calclib.plus(0.3, 0.87), 1.17)
 
 
-# (-) Substraction tests
+##
+# @brief Class MathLibCalcSubTests contains tests for method Minus in mathlicalc.py
+#
 class MathLibCalcSubTests(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()
@@ -58,7 +63,9 @@ class MathLibCalcSubTests(unittest.TestCase):
         self.assertAlmostEqual(self.calclib.minus(0.90, 0.80), 0.10, 4)
 
 
-# (*) Multiplication tests
+##
+# @brief Class MathLibCalcMulTests contains tests for method Multiply in mathlicalc.py
+#
 class MathLibCalcMulTests(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()
@@ -84,7 +91,9 @@ class MathLibCalcMulTests(unittest.TestCase):
         self.assertEqual(self.calclib.multiply(5.5, 3.2), 17.6)
 
 
-# (/) Division tests
+##
+# @brief Class MathLibCalcDivTests contains tests for method Divide in mathlicalc.py
+#
 class MathLibCalcDivTests(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()
@@ -109,7 +118,10 @@ class MathLibCalcDivTests(unittest.TestCase):
         self.assertAlmostEqual(self.calclib.divide(0.2, 0.5), 0.4, 4)
         self.assertAlmostEqual(self.calclib.divide(0.7, -0.4), -1.75, 4)
 
-# (|..|) Factorial tests
+
+##
+# @brief Class MathLibCalcAbs contains tests for method Operation_abs in mathlicalc.py
+#
 class MathLibCalcAbs(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()
@@ -125,7 +137,10 @@ class MathLibCalcAbs(unittest.TestCase):
     def test_abs_from_zero(self):
         self.assertEqual(self.calclib.operation_abs(0), 0)
 
-# (!) Factorial tests
+
+##
+# @brief Class MathLibCalcFactorial contains tests for method Factorial in mathlicalc.py
+#
 class MathLibCalcFactorial(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()
@@ -148,7 +163,10 @@ class MathLibCalcFactorial(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.calclib.factorial(-0.5)
 
-# (^) Exponent tests
+
+##
+# @brief Class MathLibCalcExponentTests contains tests for method Exponent in mathlicalc.py
+#
 class MathLibCalcExponentTests(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()
@@ -174,7 +192,10 @@ class MathLibCalcExponentTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.calclib.exponent(0,0)
 
-# (√..) Root tests
+
+##
+# @brief Class MathLibCalcRootTests contains tests for method Root in mathlicalc.py
+#
 class MathLibCalcRootTests(unittest.TestCase):
     def setUp(self):
         self.calclib = Calclib()  
