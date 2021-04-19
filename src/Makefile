@@ -8,11 +8,8 @@ SHELL = /bin/bash
 
 all: run
 
-depend: 
-	sudo apt install -y python3
+depend:
 	sudo apt install -y python3-pip
-	sudo apt install -y doxygen
-	sudo apt install -y graphviz
 	pip3 install PyQt5
 
 pack: doc
@@ -33,6 +30,8 @@ test: mathlibcalc_tests.py depend
 	python3 mathlibcalc_tests.py
 
 doc: Doxyfile
+	sudo apt install -y doxygen
+	sudo apt install -y graphviz
 	cd .. && rm -rf doc
 	mkdir ../doc && cd ../doc && doxygen ../src/$<
 
