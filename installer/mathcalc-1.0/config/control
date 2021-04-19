@@ -2,11 +2,11 @@ Source: mathcalc
 Section: application
 Priority: extra
 Maintainer: ivs <xkrali20@stud.fit.vutbr.cz>
-Build-Depends: debhelper-compat (= 12), python3-pyqt5, python3-pip, python3
+Build-Depends: debhelper-compat (= 12)
 Standards-Version: 4.4.1
 
 Package: mathcalc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: calculator
- simple calculator
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-pip, python3-pyqt5
+Description: Calculator
+ Simple calculator with basic mathematical operations
