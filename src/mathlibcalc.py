@@ -21,7 +21,12 @@ class Calclib:
     # @return Return sum of two numbers
     @staticmethod
     def plus(num1, num2):
-        return round(num1+num2, 8)
+        result = str(num1 + num2)
+        if result.find('e') != -1:
+            result = float(result)
+            return ("{:.8f}".format(result))
+        else:
+            return round(num1 + num2, 8)
 
     ##
     # @brief Function for the difference of two numbers
@@ -32,7 +37,12 @@ class Calclib:
     # @return Difference of two numbers
     @staticmethod
     def minus(num1, num2):
-        return round(num1-num2, 8)
+        result = str(num1 - num2)
+        if result.find('e') != -1:
+            result = float(result)
+            return ("{:.8f}".format(result))
+        else:
+            return round(num1 - num2, 8)
 
     ##
     # @brief Function for multiplying two numbers
@@ -43,7 +53,15 @@ class Calclib:
     # @return Multiple of two numbers
     @staticmethod
     def multiply(num1, num2):
-        return round(num1*num2, 8)
+        if type(num1) == int and type(num2) == int:
+            return round(num1*num2, 8)
+        else:
+            result = str(num1 * num2)
+            if result.find('e') != -1:
+                result = float(result)
+                return ("{:.8f}".format(result))
+            else:
+                return round(num1 * num2, 8)
 
 
     ##
@@ -59,7 +77,12 @@ class Calclib:
         if num2 == 0:
             raise ZeroDivisionError("Math Error - Dividing by zero")
         else:
-            return round(num1/num2, 8)
+            result = str(num1/num2)
+            if result.find('e') != -1:
+                result = float(result)
+                return ("{:.8f}".format(result))
+            else:
+                return round(num1/num2, 8)
 
 
     ##
@@ -70,7 +93,12 @@ class Calclib:
     # @return Absolute value of num1
     @staticmethod
     def operation_abs(num1):
-        return round(abs(num1), 8)
+        result = str(abs(num1))
+        if result.find('e') != -1:
+            result = float(result)
+            return ("{:.8f}".format(result))
+        else:
+            return round(abs(num1), 8)
 
 
     ##
@@ -104,7 +132,12 @@ class Calclib:
     def exponent(num1, expo):
         if num1 == 0 and expo == 0:
             raise ValueError("Math Error")
-        return round(num1 ** expo, 8)
+        result = str(num1 ** expo)
+        if result.find('e') != -1:
+            result = float(result)
+            return ("{:.8f}".format(result))
+        else:
+            return round(num1 ** expo, 8)
 
 
     ##
@@ -122,7 +155,21 @@ class Calclib:
         elif num1 == 0:
             return 0
         elif num1 < 0 and expo % 2 == 1:
-            return -1*round(((-1*num1) ** (1/expo)), 8)
+            result = str((-1*num1) ** (1/expo))
+            result='-'+result
+            if result.find('e') != -1:
+                result = float(result)
+                return ("{:.8f}".format(result))
+            else:
+                return -1 * round(((-1 * num1) ** (1 / expo)), 8)
         else:
-            return round((num1 ** (1/expo)), 8)
+            result = str(num1 ** (1/expo))
+            if result.find('e') != -1:
+                result = float(result)
+                return ("{:.8f}".format(result))
+            else:
+                return round((num1 ** (1 / expo)), 8)
+
+
+
 

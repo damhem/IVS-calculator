@@ -270,6 +270,9 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         elif expression == 'π':
             expression = str(round(math.pi, 10))
 
+        if len(expression) > 18:
+            expression = '0'
+            self.lineEdit_2.setText("Error - max 18 digits numbers")
 
         self.lineEdit.setText(expression)
         self.operatorbool = False
@@ -322,6 +325,10 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
         ######### start - pato ###########################
         if Calculator.last_button == "=" or Calculator.last_button == "|x|":
+            expression = "0"
+        if Calculator.last_button == "n!" and self.operatorbool:
+            self.expSolving()
+            self.lineEdit_2.setText(self.lineEdit.text())
             expression = "0"
         ############# end ############
 
@@ -492,6 +499,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             expression = expression[:-1]
             expression = expression + button
             ############ start #####################################################################################
+
             self.operatorbool = True
             ############ end #####################################################################################
         else:
@@ -503,8 +511,11 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
 
             expression = self.lineEdit.text() + button
 
+
+
         self.lineEdit.setText(expression)
         self.lineEdit.setFocus(False)
+
         Calculator.last_button = self.sender().text()
 
     ## Method buttonE_pressed
