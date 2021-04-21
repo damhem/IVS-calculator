@@ -17,29 +17,36 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 400)
-        self.dialoglabel = QtWidgets.QLabel(Dialog)
+        Dialog.resize(450, 350)
+        self.dialoglabel = QtWidgets.QTextEdit(Dialog)
         self.dialoglabel.setObjectName("dialoglabel")
-        self.dialoglabel.setStyleSheet("color:black;\n"
-                                        "font-size: 20px;\n"
-                                        "border: 2px solid;\n"
-                                        "border-radius: 8px;\n"
-                                        "background-color:white;"
-                                        "margin:5px;\n")
+        #self.dialoglabel.setStyleSheet("color:black;\n"
+        #                                "font-size: 20px;\n"
+        #                                "border: 2px solid;\n"
+        #                                "border-radius: 8px;\n"
+        #                               "background-color:white;"
+        #                               "margin:5px;\n")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.dialoglabel.setText(_translate("Dialog", "Nápověda:\n"
-                                            "Jedná se o jednoduchou kalkulačku\n"
-                                            "Čísla a operáty mužete zadávat postupně \n tlačítky nebo pomocí klávesnice            .  \n"
-                                            "V případě nefunkčnosti nakoukněte\n do dokumentace\n"
-                                            "\n"
-                                            "\n"
-                                            "\n"))
+        self.dialoglabel.setGeometry(QtCore.QRect(10, 10, 430, 330))
+        self.dialoglabel.setReadOnly(True)
+        self.dialoglabel.setHtml("<h1>Nápověda:</h1>\n"
+                                    "<p style=\"font-size:12px;\">Po spuštění naší kalkulačky se vám zobrazí rozhraní kalkulačky. Kalkulačka počítá základní matematické operace.</p>\n"
+                                    "<p style=\"font-size:12px;\">Po spuštění naší kalkulačky se vám zobrazí rozhraní kalkulačky. Kalkulačka počítá základní matematické operace.</p>\n"
+                                    "<p style=\"font-size:12px;\">Umí pracovat s operacemi +, -, *, /, !, √, ^, abs() a  konstantami e a π.</p>\n"
+                                    "<p style=\"font-size:12px;\">Na kalkulačce na nacházejí i tlačítka DEL a CE. Tlačítko CE vymaže celý zadaný výraz v kalkulačce a nahradí ho číslo 0.</p>\n"
+                                    "<p style=\"font-size:12px;\">Po zmáčknutí tohoto tlačítko můžete zadávat nový výraz. Po druhém zmáčknutí stejného tlačítka se vymaže i horní lišta.</p>\n"
+                                    "<p style=\"font-size:12px;\">Tlačítko DEL slouží na vymazání posledního znaku výrazu.</p>\n"
+                                    "<p style=\"font-size:12px;\">Čísla a operáty mužete zadávat postupně tlačítky nebo pomocí klávesnice. V případě nefunkčnosti nakoukněte do dokumentace</p>\n"
+                                    "<p style=\"font-size:12px;\">Konstanty e a π jsou desetinná čísla, které jsou zaokrouhlené na 10 desetinných míst.</p>\n"
+                                    "<p style=\"font-size:12px;\">Každá matematická operace zaokrouhlí výsledek na 8 desetinných míst.</p>\n"
+                                    "\n")
         Dialog.setWindowTitle("Nápověda")
 
 
