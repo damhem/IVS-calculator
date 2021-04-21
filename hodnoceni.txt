@@ -1,0 +1,3 @@
+xkrali20 100 (tvorba a implementace matematické knihovny, instalátor, uživatelská dokumentace) 
+xsehno01 100 (tvorba testu a testování matematické knihovny, profiling, makefile, instalátor)
+xcecha06 100 (GUI interface, mock-up, vzhled kódu, úprava dokumentace v kódu - doxygen)

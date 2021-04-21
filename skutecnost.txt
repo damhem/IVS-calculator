@@ -1,1 +1,9 @@
-sahfiusdfnsgjmsdfksdfs
+Rozdíly mezi plánem a skutečností:
+
+- Na začátku jsme zapomněli do repozitáře přidat soubor .editorconfig.
+
+- Všechny deadliny kromě jednoho jsme dodrželi, museli jsme posunut o týden deadline makefilu a instalátoru vzhledem na situacia vytížení v ostatních předmětech, nestíhali jsme úkol dokončit v požadovaném termíně.
+
+- Původně jsme měli v plánu používat tkinter na vytvoření GUI, ale nakonec jsme využili PyQt5. Vzhledem na to, že PyQt5 poskytuje jednodušší prostředí a více nástrojů na tvorbu GUI.
+
+- Finální verze matematické knihovny měla být hotová hned po vytvoření testů. Avšak v průběhu vývoje kalkulačky jsme matematicku knihovnu párkrát upravovali pro naši potřebu. Šlo o drobné úpravy: zaokrouhlování na 8 desatinných míst a úprava formátu výsledku, aby se nezobrazoval ve vědeckém formátě. 
