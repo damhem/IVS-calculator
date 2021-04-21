@@ -3,7 +3,12 @@
 # Author: Dalibor Králik, xkrali20
 # Date: 2021-03-22
 
-
+##
+#   @file mathlibcalc.py
+#
+#   @brief Contains the Calclib class with methods for calculator
+#   @author Dalibor Kralik, xkrali20
+#
 
 
 

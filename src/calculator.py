@@ -12,6 +12,15 @@ from PyQt5.QtGui import *
 import os
 
 ##
+#   @file calculator.py
+#
+#   @brief Contains the Calculator class, which contains all method for user interaction with calculator
+#   @author Daniel Čechák, xcecha06
+#
+
+
+
+##
 # @brief Class Calculator contains initialization and button methods
 #
 class Calculator(QtWidgets.QMainWindow, Calculator_ui):
