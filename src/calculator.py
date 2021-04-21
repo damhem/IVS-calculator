@@ -1,3 +1,6 @@
+#!usr/bin/python3
+# -*- coding: utf-8 -*-
+
 ## File: calculator.py
 # Project IVS 2
 # Author: Daniel Čechák, xcecha06
@@ -10,6 +13,15 @@ from mathlibcalc import Calclib
 import math
 from PyQt5.QtGui import *
 import os
+
+##
+#   @file calculator.py
+#
+#   @brief Contains the Calculator class, which contains all method for user interaction with calculator
+#   @author Daniel Čechák, xcecha06
+#
+
+
 
 ##
 # @brief Class Calculator contains initialization and button methods
@@ -111,7 +123,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         if event.key() == QtCore.Qt.Key_Escape:  # QtCore.Qt.Key_Escape is a value for escape key being pressed.
             self.close()  # Close the window
 
-    #################### start #############################################################################
+
     ## Method convertIndex
     # @brief Function convert index to the integer
     #
@@ -270,11 +282,14 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         elif expression == 'π':
             expression = str(round(math.pi, 10))
 
+        if len(expression) > 18:
+            expression = '0'
+            self.lineEdit_2.setText("Error - max 18 digits numbers")
 
         self.lineEdit.setText(expression)
         self.operatorbool = False
 
-    ###################### end ###########################################################################
+
 
     ## Method buttonSolve_pressed
     # @brief Function reaction on Solve button being clicked
@@ -282,11 +297,11 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
     # @param self The object pointer.
     def buttonSolve_pressed(self):
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
-        ############ start #####################################################################################
+
         self.lineEdit_2.setText(expression)
         self.expSolving()
         self.operatorbool = False
-        ############ end #####################################################################################
+
         self.lineEdit.setFocus(False)
         Calculator.last_button = "="
 
@@ -320,10 +335,14 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         array = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'}
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
 
-        ######### start - pato ###########################
+
         if Calculator.last_button == "=" or Calculator.last_button == "|x|":
             expression = "0"
-        ############# end ############
+        if Calculator.last_button == "n!" and self.operatorbool:
+            self.expSolving()
+            self.lineEdit_2.setText(self.lineEdit.text())
+            expression = "0"
+
 
         if expression[-1] == "ͤ" or expression[-1] == "ⷫ":
             expression = expression
@@ -380,9 +399,9 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             # printing result into lineEdit
             self.lineEdit.setText(expression)
             self.lineEdit.setFocus(False)
-        ############ start #####################################################################################
+
         self.operatorbool = False
-        ############ end #####################################################################################
+
         Calculator.last_button = self.sender().text()
 
     ## Method buttonDelete1_pressed
@@ -396,11 +415,11 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         elif expression == "":
             expression = "0"
         else:
-            ############ start #####################################################################################
+
             if expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" or expression[-1] == "/" \
                     or expression[-1] == "!":
                 self.operatorbool = False
-            ############ end #####################################################################################
+
             expression = expression[:-1]
         # printing result into lineEdit
         self.lineEdit.setText(expression)
@@ -420,16 +439,16 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             expression = expression[:-1]
             expression = expression + button.text()
 
-            ############ start #####################################################################################
+
             self.operatorbool = True
-            ############ end #####################################################################################
+
 
         else:
-            ############ start #####################################################################################
+
             if self.operatorbool:
                 self.expSolving()
             self.operatorbool = True
-            ############ end #####################################################################################
+
 
             expression = self.lineEdit.text() + button.text()
 
@@ -491,20 +510,24 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                 or expression[-1] == "/" or expression[-1] == ".":
             expression = expression[:-1]
             expression = expression + button
-            ############ start #####################################################################################
+
+
             self.operatorbool = True
-            ############ end #####################################################################################
+
         else:
-            ############ start #####################################################################################
+
             if self.operatorbool:
                 self.expSolving()
             self.operatorbool = True
-            ############ end #####################################################################################
+
 
             expression = self.lineEdit.text() + button
 
+
+
         self.lineEdit.setText(expression)
         self.lineEdit.setFocus(False)
+
         Calculator.last_button = self.sender().text()
 
     ## Method buttonE_pressed
@@ -591,7 +614,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         button = "|"
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
 
-        ############ start #####################################################################################
+
         negativebool = False  # bool value for know if num1 is negative or not
         if self.operatorbool == False:  # if is not any operator in expression string
             # convert expression to the float or integer depends on decimal point
@@ -625,7 +648,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         self.lineEdit.setText(expression)
         if negativebool: # if num1 was negative, add '-' to expression for self.lineEdit_2.setText()
             expression = '-'+expression
-        ############ end #####################################################################################
+
 
 
         if expression[-1] == button:
@@ -637,10 +660,10 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             #changed self.lineEdit.text to expression
             expression = button + expression + button
 
-        ############ start #####################################################################################
+
         self.lineEdit_2.setText(expression)
         self.operatorbool = False  # none operator should be in expression after abs function
-        ############ end #####################################################################################
+
 
         self.lineEdit.setFocus(False)
         Calculator.last_button = self.sender().text()
@@ -660,15 +683,15 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
             expression = expression[:-1]
             expression = button + expression
 
-            ############ start #####################################################################################
+
             self.operatorbool = True
-            ############ end #####################################################################################
+
         else:
-            ############ start #####################################################################################
+
             if self.operatorbool:
                 self.expSolving()
             self.operatorbool = True
-            ############ end #####################################################################################
+
             expression = button + self.lineEdit.text()
 
         # printing result into lineEdit
@@ -684,12 +707,12 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         button = "ⁿ"
         expression = self.lineEdit.text()  # getting value from lineEdit(calculator input) in the moment
 
-        ############ start #####################################################################################
+
         if self.operatorbool:
             self.expSolving()
             expression = self.lineEdit.text()
         self.operatorbool = True
-        ############ end #####################################################################################
+
 
         # if last char is simple operator or float get rid of it
         if expression[-1] == button or expression[-1] == "+" or expression[-1] == "-" or expression[-1] == "*" \
