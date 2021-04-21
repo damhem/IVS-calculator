@@ -1,3 +1,6 @@
+#!usr/bin/python3
+# -*- coding: utf-8 -*-
+
 # mathlibcalc.py
 # Project IVS 2
 # Author: Dalibor Králik, xkrali20

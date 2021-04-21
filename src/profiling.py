@@ -11,6 +11,15 @@ from mathlibcalc import Calclib
 
 
 ##
+#   @file profiling.py
+#
+#   @brief Contains algorithm for calculating the math expression with help of the mathlibcalc.py
+#   @author Patrik Sehnoutek, xsehno01
+#
+
+
+
+##
 # @brief Function for reading input from stdin
 #
 # @return Array of numbers from stdin

@@ -1,3 +1,6 @@
+#!usr/bin/python3
+# -*- coding: utf-8 -*-
+
 # mathlibcalc_tests.py
 # Project IVS 2
 # Author: Patrik Sehnoutek, xsehno01
@@ -5,6 +8,13 @@
 
 import unittest
 from mathlibcalc import Calclib
+
+##
+#   @file mathlibcalc_tests.py
+#
+#   @brief Contains tests for the mathlibcalc.py
+#   @author Patrik Sehnoutek, xsehno01
+#
 
 
 ##
