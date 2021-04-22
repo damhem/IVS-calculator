@@ -238,9 +238,11 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         # Solving exponent (power) function
         array1 = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', 'ⷫ', 'ͤ']
         if not exponentbool and expression[-1] in array1:
+
             for i in expression:
+
                 if i in array1:
-                    numbers = expression.split(i)
+                    numbers = expression.split(i, 1)
                     num1 = numbers[0]
                     num2 = i+numbers[1]
                     numbers[1] = i + numbers[1]
@@ -282,9 +284,9 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         elif expression == 'π':
             expression = str(round(math.pi, 10))
 
-        if len(expression) > 18:
+        if len(expression) > 15:
             expression = '0'
-            self.lineEdit_2.setText("Error - max 18 digits numbers")
+            self.lineEdit_2.setText("Error-max 15 digits numbers")
 
         self.lineEdit.setText(expression)
         self.operatorbool = False
