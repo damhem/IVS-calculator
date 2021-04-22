@@ -4,23 +4,23 @@
 
 SHELL = /bin/bash
 
-.PNONY: all pack clean test doc run profile
+.PNONY: all depend pack clean test doc run profile installer
 
 all: run
 
 depend:
-	sudo apt install -y python3-pip
-	pip3 install PyQt5
+	bash dependencies.sh
 
-pack: doc
+pack: doc installer
+	rm -rf ../../xkrali20_xsehno01_xcecha06
 	mkdir -p ../../xkrali20_xsehno01_xcecha06/repo
 	mkdir ../../xkrali20_xsehno01_xcecha06/doc
 	mkdir ../../xkrali20_xsehno01_xcecha06/install
 	cp -a ../../IVS-calculator/. ../../xkrali20_xsehno01_xcecha06/repo
 	cp -a ../doc/. ../../xkrali20_xsehno01_xcecha06/doc
-	cp -a ../install/. ../../xkrali20_xsehno01_xcecha06/install
+	cp -a ../installer/. ../../xkrali20_xsehno01_xcecha06/install
+	rm -rf  ../../xkrali20_xsehno01_xcecha06/install/mathcalc-1.0
 	rm -rf ../../xkrali20_xsehno01_xcecha06/repo/doc
-	rm -rf ../../xkrali20_xsehno01_xcecha06/repo/install
 	cd ../.. && zip -r xkrali20_xsehno01_xcecha06.zip xkrali20_xsehno01_xcecha06
 	 
 clean:
