@@ -230,7 +230,7 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                         expression = str(Calclib.root(num2, num1))
                     except ValueError:
                         # Throw error message when exponent = 0
-                        self.lineEdit_2.setText("Math Error - Exponent = 0")
+                        self.lineEdit_2.setText("Math Error ")
                         self.lineEdit.setText("0")
                         self.operatorbool = False
                         return
