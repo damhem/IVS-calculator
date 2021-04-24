@@ -1,0 +1,7 @@
+install/mathcalc.png /usr/share/pixmaps
+install/mathcalc /usr/bin
+install/mathcalc.desktop /usr/share/applications
+main.py /opt
+calculator.py /opt
+gui.py /opt
+mathlibcalc.py /opt
