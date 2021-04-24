@@ -27,7 +27,7 @@ clean:
 	rm -rf ../../xkrali20_xsehno01_xcecha06
 
 test: mathlibcalc_tests.py depend
-	python3 mathlibcalc_tests.py
+	python3 $<
 
 doc: Doxyfile
 	sudo apt install -y doxygen
@@ -36,10 +36,10 @@ doc: Doxyfile
 	mkdir ../doc && cd ../doc && doxygen ../src/$<
 
 run: main.py depend
-	python3 main.py
+	python3 $<
 
 profile: profiling.py depend
-	python3 profiling.py
+	python3 $<
 
 installer: main.py mathlibcalc.py gui.py calculator.py
 	bash install.sh
