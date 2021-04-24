@@ -38,7 +38,9 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
         # initialization
         super().__init__()
 
-        self.setWindowIcon(QtGui.QIcon("cal.png"))
+        dirname = os.path.dirname(__file__)
+        icon_path = dirname + '/cal.png'
+        self.setWindowIcon(QtGui.QIcon(icon_path))
         self.setupUi(self)
         self.show()
 

@@ -2,7 +2,7 @@
 Categories=Qt;Application;
 Exec=mathcalc
 GenericName=Simple Calculator
-Icon=/usr/share/pixmaps/mathcalc.png
+Icon=/usr/share/pixmaps/mathcalc.xpm
 Name=MathCalc
 Type=Application
 X-KDE-StartupNotify=false

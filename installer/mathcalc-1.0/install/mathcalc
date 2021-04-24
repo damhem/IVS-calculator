@@ -1,4 +1,4 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
-exec python3 "/opt/main.py"
+exec python3 "/opt/mathcalc/main.py"
