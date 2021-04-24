@@ -246,9 +246,9 @@ class Calculator(QtWidgets.QMainWindow, Calculator_ui):
                     num1 = numbers[0]
                     num2 = i+numbers[1]
                     numbers[1] = i + numbers[1]
-                    if num1 == 'e':
+                    if num1 == 'e' or num1 == 'e ':
                         num1 = math.e
-                    elif num1 == 'π':
+                    elif num1 == 'π' or num1 == 'π ':
                         num1 = math.pi
                     elif num1.find('.') != -1:
                         num1 = float(num1)
